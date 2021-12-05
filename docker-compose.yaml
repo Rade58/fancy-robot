@@ -1,0 +1,50 @@
+# ./docker-compose.test.yml
+version: "3.9"
+
+services:
+  # THIS FIRST SERVICE, WE NEED DATBASE CONNECTION STRING HERE
+  # OF A DATBASE WE WANT TO CONNECT
+  # THIS IS A SERVICE OF A CONTAINER WHERE WE TEST OUR APP
+  # FOT FOR NOW WE ARE NOT GOING TO DO THAT
+  # WE ARE GOING TO HAVE JUST A CONTAINER WITH A DATBASE
+  # server:
+  #   container_name: fancy-parrot-test-server
+  #   build:
+  #     context: "."
+  #     target: base
+  #   environment:
+  #     DATABASE_URL: postgresql://themata:schism@localhost:5432/fancy-parrot-test
+  #   ports:
+  #     - 9999:80
+  #   volumes:
+  #     - ./src:/usr/src/app
+  #     - ./package.json:/usr/src/app/package.json
+  #   networks:
+  #     - test_vm
+  #   depends_on:
+  #     - database
+
+  # AS YOU CAN SEE THIS IS THE DATABASE SERVICE
+  # FOR THE DATBASE CONTAINER
+  # SO THIA REPRESENT OUR DATBASE THAT WE ARE GOING TO USE TO CONNECT
+  # DURING TESTS
+  db:
+    image: postgres:13.3
+    restart: always
+    container_name: fancy-parrot-test-db
+    environment:
+      - POSTGRES_USER=themata
+      - POSTGRES_PASSWORD=schism
+      - POSTGRES_DB=fancy-parrot-test
+    # volumes:
+    # - ./postgres/data:/var/lib/postgresql/data
+    # expose:
+    # - 5432
+    ports:
+      - "5432:5432"
+    # networks:
+    # - test_vm
+# volumes:
+#   database:
+# networks:
+#   test_vm:

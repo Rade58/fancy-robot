@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/work/*": ["work/src/*"],
+      "@/components/*": ["components/*"],
+      "@/types/*": ["types/*"],
+      "@/lib/*": ["lib/*"],
+      "@/theme/*": ["theme/*"],
+      "@/machines/*": ["machines/*"],
+      "@/constants/*": ["constants/*"],
+      "@/hooks/*": ["hooks/*"],
+      "@/util/*": ["util/*"],
+      "@/svgs/*": ["svgs/*"],
+      "@/styles/*": ["styles/*"],
+      "@/db/*": ["db/*"],
+      "@/pages/*": ["pages/*"],
+      "@/middlewares/*": ["middlewares/*"]
+    },
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "jsxImportSource": "@emotion/react",
+    "incremental": true
+  },
+  "files": ["twin.d.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "countries_n_states/index.mjs",
+    "_dev/gen_na_im.mjs"
+  ],
+  "exclude": ["node_modules"]
+}

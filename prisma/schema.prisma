@@ -1,0 +1,365 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// INITIAL SKAFFOLD (current folder and file) IS GENERATED WITH   `npx prisma init`
+// https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases-typescript-postgres
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// ENUMS AND OTHER TYPES
+// ROLE
+enum Role {
+  USER
+  ADMIN
+  BANNED
+  // SHOULD HAVE MORE PRIVILAGES THAN ADMIN
+  // HE SHOULD CREATE ADMINS FOR SOME USERS
+  // HE SHOULD HAVE BACKDOR OF THE APP
+  // AND HE DOESN'T NEED ANY NEXT-AUTH STUFF
+  SUPERADMIN
+}
+
+// THIS ONE IS FOR THE STATUS OF ORDER
+enum OrderStatus {
+  PENDING // THIS IS GOING TO BE DEFAULT WHEN USERS CREATS ORDER
+  // MENTIONED STATUS IS STATUS THAT IS ACTIVE UNTILL USER
+  // COMPLETES shipping , payment forms and presses `Place An Order` BUTTON
+  // THIS NEXT STATUS MEANS THAT THE USER ACTUALLY MADE AN
+  // ORDER BUT STILL DIDN'T PAY FOR IT
+  AWAITING_PAYMENT_METHOD
+  //
+  AWAITING_ORDER_PLACEMENT // THIS IS TIED ON ORDER PLACING PAGE (WHERE ACTUALL PAYMENT WITH PAYPAL IS INITIALIZED)
+  //
+  AWAITING_PAYMENT_RESOLVEMENT
+  //
+  REJECTED // MEANS SOMETHING WENT WRONG (MAYBE PAYMENT IS REJECTED)
+  FULFILLED // MENAS PAYED
+  DELIVERED
+}
+
+// WE WILL USE JUST PayPal (WHICH ALSO HAS CREDIT CARD PAYMENT ALSO)
+// BUT IN FUTURE IF ANYONE WANTS TO ADD OTHER STUFF THIS CAN BE EXTENDED
+enum PaymentProvider {
+  PayPal
+  Stripe
+  TwoCheckout
+}
+
+//                    NEXT-AUTH RELATED STUFF
+// --------------------------------------------------
+// --------------------------------------------------
+// --------------------------------------------------
+// --------------------------------------------------
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  // NEXT-AUTH VERSION 4 CHANGES
+  // providerType       String
+  type               String
+  // providerId         String
+  provider           String
+  providerAccountId  String
+  // refreshToken       String?
+  // accessToken        String?
+  refresh_token      String?
+  access_token       String?
+  // accessTokenExpires DateTime?
+  // createdAt         DateTime @default(now())
+  // updatedAt         DateTime @updatedAt
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?
+  session_state      String?
+  oauth_token_secret String?
+  oauth_token        String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  // VERSION 4 (DON'T NEED THIS)
+  // accessToken  String   @unique
+  // createdAt    DateTime @default(now())
+  // updatedAt    DateTime @updatedAt
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(cuid())
+  //
+  name          String?
+  email         String?   @unique
+  // email_verified DateTime?
+  emailVerified DateTime?
+  image         String?
+  // NEW NEXT AUTH DOESN'T MAKE THESE
+  // createdAt      DateTime  @default(now())
+  // updatedAt      DateTime  @updatedAt
+  accounts      Account[]
+  sessions      Session[]
+  // WE EXTEND THIS WITH Profile RECORD
+  profiles      Profile[]
+}
+
+//
+model VerificationToken {
+  // VERSION 4 CHANGES
+  // id         String   @id @default(cuid())
+  identifier String
+  token      String   @unique
+  expires    DateTime
+  // createdAt  DateTime @default(now())
+  // updatedAt  DateTime @updatedAt
+
+  @@unique([identifier, token])
+}
+
+// --------------------------------------------------
+// IDEA BEHIND Profile RECORD IS TO BE LIKE "EXTENSION"
+// OF User RECORD (BECAUSE I DON'T WANT TO TOUCH
+// User RECORD (WHY? I DON'T KNOW, IT IS USED PRIMARLY BY
+// next-auth AND I DON'T WANT TO TOUCH IT)
+// (FOR EXAMPLE I NEED TO USE SOME FEATURES OF next-auth
+// BECAUSE I WANT TO INSERT EXTRA DATA ON SESSION OBJECT
+// AND I WANT TO CREATE Profile RECORD WHEN NEXT AUTH
+// CREATES "THEIR" User RECORD )
+// DOING EXTRA STUFF FOR THE SAKE OF DOING EXTRA STUFF
+// AND EDUCATING MYSELF
+// ALSO Profile WILL HAVE EXTRA DATA, LIKE ADRESS STUFF (WHERE TO DELIVER AND ALL THAT)
+// --------------------------------------------------
+
+model Profile {
+  id                     String     @id @default(cuid())
+  // PROFILE SHOULDN'T NECESSARY HAS THE RELATED USER
+  // SUPERADMIN PROFILE SHOULDN'T HAVE ANY USER RECORD
+  // RELATED TO HIM, THAT'S WHY user IS OPTIONAL HERE
+  user                   User?      @relation(fields: [userId], references: [id])
+  userId                 String?
+  role                   Role       @default(USER)
+  // FOR SHIPPING PURPOSES
+  image                  String?
+  streetAddress          String?
+  city                   String?
+  postalCode             String?
+  country                String?
+  regionOrState          String?
+  // paymentMethod          String?
+  createdAt              DateTime   @default(now())
+  updatedAt              DateTime   @default(now()) @updatedAt
+  // --------------
+  ordersHistory          Order[]
+  reviewsHistory         Review[]
+  // FOR ADMIN USER
+  productCreationHistory Product[]
+  // THIS IS HELPFUL FOR SUPERADMIN (WE CAN SAVE THERE NAME OF THE USER TOO)
+  // IT IS A BIT MISLEADING BUT NEVER MIND
+  favoriteProducts       Favorite[]
+
+
+  nick  String?
+  // SOMETIMES OUR USER OBJECT WON'T HAVE email (GITHUB OAUTH DOESN'T REVEAL A email)
+  // SO VE CAN ADD email HERE TOO
+  email String?
+}
+
+// -------------------------------------------------------------
+// -------------------------------------------------------------
+
+// -------- PRODUCT---------------------------------------------
+
+model Product {
+  id            String         @id @default(cuid())
+  // ADMIN (Profile) CREATES PRODUCT
+  // THIS IS OPTIONAL BECAUSE IT IS EASIER FOR DATBASE SEEDING
+  // AND OBVIUSLY WHEN YOU ARE MAKING SHOP YOU DON'T WANT
+  // EMPTY Product TABLE, SOMEONE NEEDS TO LOAD PRODUCTS
+  // WHEN WE ARE PUSHING PROJECT TO DEPLOYMENT
+  admin         Profile?       @relation(fields: [adminId], references: [id])
+  adminId       String?
+  name          String
+  image         String
+  description   String
+  brand         String
+  category      String?
+  // THIS SHOULD BE STRING; ALSO WE ARE GOING TO PARSE THIS
+  // price         Float
+  price         String
+  countInStock  Int
+  // AVERAGE OF ALL OF THE REVIEWS RATINGS
+  // !!!! IMPORTANT THIS MEANS EVERY TIME YOU MAKE A REVIEW
+  // YOU NEED TO UPDATE PRODUCT
+  averageRating Float          @default(0.0)
+  // REVIEW COUNT (DON'T NEED THIS IN HERE (A GOOD PLACE TO MAKE MISTAKES))
+  // numReviews    Int            @default(0)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  //  Reviews
+  reviews       Review[]
+  // OrderElements
+  orderElements OrderElement[]
+  // HERE WE WILL HAVE ONLY ONE RECORD (JUST YOU TO KNOW)
+  // averageRating AvarageProductRating[]
+  favorites     Favorite[]
+}
+
+// -------------------------------------------------------------
+// -------------------------------------------------------------
+// !!!!!! IGNORE THIS
+//
+// AVERAGE RATING SHOULD HAVE IT'S OWN RECORD
+// IT SHIULD LINK
+// SO EVERY TIME REVIEW IS MADE YOU MAKE A REVIEW
+// THIS IS BECAUSE I DON'T WANT TO CALCULATE AVARAGE RATING
+// IT SHOULD BE CALCULATED ON LEAVING A REVIEW
+// THIS RECORD SHOULD LINK ONE PRODUCT
+// AND ALL HIS REVIEWS
+
+// BECAUSE LATTER ON IT IS GOING TOO BE EASIER TO
+// QUERY ALL PRODUCTS DEPENDING ON HIGHER AVERAGE REVIEW
+// TO MAKE THIS RECORD YOU NEED A REVIEWS FIRST
+// model AvarageProductRating {
+//   id            String  @id @default(cuid())
+//   averageRating Int
+//   product       Product @relation(fields: [productId], references: [id])
+//   productId     String
+
+//   reviews Review[]
+// }
+
+// -------- REVIEW--------------------------------------------
+
+// !!!! IMPORTANT EVERY TIME YOU MAKE A REVIEW YOU NEED TO
+// UPDATE AVERAGErATING ON PRODUCT
+// TODO: BUILD A HELPER
+
+model Review {
+  id        String   @id @default(cuid())
+  product   Product  @relation(fields: [productId], references: [id])
+  productId String
+  // HERE WE WANT ONLY NUMBERS FROM 1 TO 5
+  rating    Int
+  //
+  profile   Profile  @relation(fields: [profileId], references: [id])
+  profileId String
+  comment   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
+// ------------   Favorite ------------   (favorite product)
+
+model Favorite {
+  id        String   @id @default(cuid())
+  profile   Profile  @relation(fields: [profileId], references: [id])
+  profileId String
+  product   Product  @relation(fields: [productId], references: [id])
+  productId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// -------------------------------------------------------------
+// -------------------------------------------------------------
+
+// -------- ORDER ELEMENT
+// (LINKS SINGLE PRODUCT RECORD WITH THE ORDER;
+// -------- PRODUCTS QUANTITY (NUMBER OF SINGLE PRODUCT
+// -------- IS DEFINED HERE))
+// SO ONE ORDER CAN HAVE MAND ORDER ELEMENTS THAT DESCRIBE
+// PRODUCTS IN ONE ORDER
+
+model OrderElement {
+  id        String  @id @default(cuid())
+  quantity  Int
+  product   Product @relation(fields: [productId], references: [id])
+  productId String
+  // ----------------------
+  order     Order   @relation(fields: [orderId], references: [id])
+  orderId   String
+}
+
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
+// ------------   ORDER ----------------------
+
+model Order {
+  id              String           @id @default(cuid())
+  buyer           Profile          @relation(fields: [buyerId], references: [id])
+  buyerId         String
+  items           OrderElement[]
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  // WE WILL UPDATE THIS
+  // WHEN WE FIND OUT STATUS FROM paymentResult
+  // OR MAYBE WE WILL REMOVE THIS IN THE FUTURE
+  status          OrderStatus      @default(PENDING)
+  // WE DON'T NEED THIS BECAUSE WE ALREADY HAVE    deliveredAt    ROW
+  // isDelivered     Boolean        @default(false)
+  // THIS IS GOING TO BE IN PERCENTS (I GUESS GOOD DEFAULT IS 14.6%)
+  taxPrice        Float?           @default(14.6)
+  // I THINK THIS IS ANTI PATTERN ALSO
+  // TOTAL PRICE SHOULD BE CALCULATED FROM items FIELD
+  // BECAUSE THERE YOU HAVE ALL THE ITEMS AND THEIR COUNTS
+  // AND THEIR PRICES
+  // THIS SHOLUD BE ON PAYMENT RESULT
+  // DON'T WORRY WE ARE NOT GOING TO CALCULATE FRONT END (WE WILL DO THIS ON SERVER SIDE)
+  // totalPrice      Float?
+  // WE CAN PUT DEFAULT HERE ALSO
+  // THIS IS NOT IN PERCENTS (THESE ARE DOLLARS AND I'LL USE STRING
+  // FOR THIS VALUE)
+  shippingPrice   String           @default("5.6")
+  paymentMethod   PaymentProvider?
+  // PAYPAL RELATED (MYBE ALSO STRIPE OR SOME OTHER PROVIDER (FOR NOW IT IS ONLY PAYPAL
+  // SINCE WE ARE NOT PLANING ON USING STRIPE))
+  paymentResult   PaymentResult?   @relation(fields: [paymentResultId], references: [id])
+  //
+  paymentResultId String?
+  payedAt         DateTime?
+  deliveredAt     DateTime?
+}
+
+// -----------------------------------------------------------------------
+// -----------------------------------------------------------------------
+// -----------------------------------------------------------------------
+// ------------------- PAYMENT RESULT
+// WE KEEP HERINFO FROM PAYPAL
+// I WON'T BE ADDING OTHER PROVIDERS
+// BUT ONE FIELD WILL BE INTENDED FOR STORING PAYMENTS PROVIDER NAME
+// THIS IS ONLY GOING TO BE CREATED AFTER SUCCESSFUL PAYMENT
+// OR I GUESS MAYBE PAYMENT THAT IS PROCESSED
+
+model PaymentResult {
+  // THIS IS THE ID THAT WILL BE GENERATED
+  id              String          @id @default(cuid())
+  // THIS IS THE ID FROM PAYPAL (OR ANY OTHER PROVIDER)
+  paymentId       String
+  // THIS IS A PROVIDER
+  paymentProvider PaymentProvider
+  // MAYBE WE WILL CHANGE THIS status FIELD IN THE FUTURE
+  // MAYBE THERE ARE SOME STANDARDIZED STATUS VALUES
+  totalPrice      String
+  status          String?
+  update_time     String?
+  email           String?
+  orders          Order[]
+}
+
+// ------------------------------------------------------------------------

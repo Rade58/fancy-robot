@@ -1,0 +1,662 @@
+{
+  "AL":{
+    "id": 1456,
+    "name": "Alabama",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "AL",
+    "type": null,
+    "latitude": "32.31823140",
+    "longitude": "-86.90229800"
+  },
+  "AK":{
+    "id": 1400,
+    "name": "Alaska",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "AK",
+    "type": null,
+    "latitude": "64.20084130",
+    "longitude": "-149.49367330"
+  },
+  "AS":{
+    "id": 1424,
+    "name": "American Samoa",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "AS",
+    "type": null,
+    "latitude": "-14.27097200",
+    "longitude": "-170.13221700"
+  },
+  "AZ":{
+    "id": 1434,
+    "name": "Arizona",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "AZ",
+    "type": null,
+    "latitude": "34.04892810",
+    "longitude": "-111.09373110"
+  },
+  "AR":{
+    "id": 1444,
+    "name": "Arkansas",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "AR",
+    "type": null,
+    "latitude": "35.20105000",
+    "longitude": "-91.83183340"
+  },
+  "UM-81":{
+    "id": 1402,
+    "name": "Baker Island",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "UM-81",
+    "type": null,
+    "latitude": "0.19362660",
+    "longitude": "-176.47690800"
+  },
+  "CA":{
+    "id": 1416,
+    "name": "California",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "CA",
+    "type": null,
+    "latitude": "36.77826100",
+    "longitude": "-119.41793240"
+  },
+  "CO":{
+    "id": 1450,
+    "name": "Colorado",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "CO",
+    "type": null,
+    "latitude": "39.55005070",
+    "longitude": "-105.78206740"
+  },
+  "CT":{
+    "id": 1435,
+    "name": "Connecticut",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "CT",
+    "type": null,
+    "latitude": "41.60322070",
+    "longitude": "-73.08774900"
+  },
+  "DE":{
+    "id": 1399,
+    "name": "Delaware",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "DE",
+    "type": null,
+    "latitude": "38.91083250",
+    "longitude": "-75.52766990"
+  },
+  "DC":{
+    "id": 1437,
+    "name": "District of Columbia",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "DC",
+    "type": null,
+    "latitude": "38.90719230",
+    "longitude": "-77.03687070"
+  },
+  "FL":{
+    "id": 1436,
+    "name": "Florida",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "FL",
+    "type": null,
+    "latitude": "27.66482740",
+    "longitude": "-81.51575350"
+  },
+  "GA":{
+    "id": 1455,
+    "name": "Georgia",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "GA",
+    "type": null,
+    "latitude": "32.16562210",
+    "longitude": "-82.90007510"
+  },
+  "GU":{
+    "id": 1412,
+    "name": "Guam",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "GU",
+    "type": null,
+    "latitude": "13.44430400",
+    "longitude": "144.79373100"
+  },
+  "HI":{
+    "id": 1411,
+    "name": "Hawaii",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "HI",
+    "type": null,
+    "latitude": "19.89676620",
+    "longitude": "-155.58278180"
+  },
+  "UM-84":{
+    "id": 1398,
+    "name": "Howland Island",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "UM-84",
+    "type": null,
+    "latitude": "0.81132190",
+    "longitude": "-176.61827360"
+  },
+  "ID":{
+    "id": 1460,
+    "name": "Idaho",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "ID",
+    "type": null,
+    "latitude": "44.06820190",
+    "longitude": "-114.74204080"
+  },
+  "IL":{
+    "id": 1425,
+    "name": "Illinois",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "IL",
+    "type": null,
+    "latitude": "40.63312490",
+    "longitude": "-89.39852830"
+  },
+  "IN":{
+    "id": 1440,
+    "name": "Indiana",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "IN",
+    "type": null,
+    "latitude": "40.26719410",
+    "longitude": "-86.13490190"
+  },
+  "IA":{
+    "id": 1459,
+    "name": "Iowa",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "IA",
+    "type": null,
+    "latitude": "41.87800250",
+    "longitude": "-93.09770200"
+  },
+  "UM-86":{
+    "id": 1410,
+    "name": "Jarvis Island",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "UM-86",
+    "type": null,
+    "latitude": "-0.37435030",
+    "longitude": "-159.99672060"
+  },
+  "UM-67":{
+    "id": 1428,
+    "name": "Johnston Atoll",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "UM-67",
+    "type": null,
+    "latitude": "16.72950350",
+    "longitude": "-169.53364770"
+  },
+  "KS":{
+    "id": 1406,
+    "name": "Kansas",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "KS",
+    "type": null,
+    "latitude": "39.01190200",
+    "longitude": "-98.48424650"
+  },
+  "KY":{
+    "id": 1419,
+    "name": "Kentucky",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "KY",
+    "type": null,
+    "latitude": "37.83933320",
+    "longitude": "-84.27001790"
+  },
+  "UM-89":{
+    "id": 1403,
+    "name": "Kingman Reef",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "UM-89",
+    "type": null,
+    "latitude": "6.38333300",
+    "longitude": "-162.41666700"
+  },
+  "LA":{
+    "id": 1457,
+    "name": "Louisiana",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "LA",
+    "type": null,
+    "latitude": "30.98429770",
+    "longitude": "-91.96233270"
+  },
+  "ME":{
+    "id": 1453,
+    "name": "Maine",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "ME",
+    "type": null,
+    "latitude": "45.25378300",
+    "longitude": "-69.44546890"
+  },
+  "MD":{
+    "id": 1401,
+    "name": "Maryland",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "MD",
+    "type": null,
+    "latitude": "39.04575490",
+    "longitude": "-76.64127120"
+  },
+  "MA":{
+    "id": 1433,
+    "name": "Massachusetts",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "MA",
+    "type": null,
+    "latitude": "42.40721070",
+    "longitude": "-71.38243740"
+  },
+  "MI":{
+    "id": 1426,
+    "name": "Michigan",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "MI",
+    "type": null,
+    "latitude": "44.31484430",
+    "longitude": "-85.60236430"
+  },
+  "UM-71":{
+    "id": 1438,
+    "name": "Midway Atoll",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "UM-71",
+    "type": null,
+    "latitude": "28.20721680",
+    "longitude": "-177.37349260"
+  },
+  "MN":{
+    "id": 1420,
+    "name": "Minnesota",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "MN",
+    "type": null,
+    "latitude": "46.72955300",
+    "longitude": "-94.68589980"
+  },
+  "MS":{
+    "id": 1430,
+    "name": "Mississippi",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "MS",
+    "type": null,
+    "latitude": "32.35466790",
+    "longitude": "-89.39852830"
+  },
+  "MO":{
+    "id": 1451,
+    "name": "Missouri",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "MO",
+    "type": null,
+    "latitude": "37.96425290",
+    "longitude": "-91.83183340"
+  },
+  "MT":{
+    "id": 1446,
+    "name": "Montana",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "MT",
+    "type": null,
+    "latitude": "46.87968220",
+    "longitude": "-110.36256580"
+  },
+  "UM-76":{
+    "id": 1439,
+    "name": "Navassa Island",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "UM-76",
+    "type": null,
+    "latitude": "18.41006890",
+    "longitude": "-75.01146120"
+  },
+  "NE":{
+    "id": 1408,
+    "name": "Nebraska",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "NE",
+    "type": null,
+    "latitude": "41.49253740",
+    "longitude": "-99.90181310"
+  },
+  "NV":{
+    "id": 1458,
+    "name": "Nevada",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "NV",
+    "type": null,
+    "latitude": "38.80260970",
+    "longitude": "-116.41938900"
+  },
+  "NH":{
+    "id": 1404,
+    "name": "New Hampshire",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "NH",
+    "type": null,
+    "latitude": "43.19385160",
+    "longitude": "-71.57239530"
+  },
+  "NJ":{
+    "id": 1417,
+    "name": "New Jersey",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "NJ",
+    "type": null,
+    "latitude": "40.05832380",
+    "longitude": "-74.40566120"
+  },
+  "NM":{
+    "id": 1423,
+    "name": "New Mexico",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "NM",
+    "type": null,
+    "latitude": "34.51994020",
+    "longitude": "-105.87009010"
+  },
+  "NY":{
+    "id": 1452,
+    "name": "New York",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "NY",
+    "type": null,
+    "latitude": "40.71277530",
+    "longitude": "-74.00597280"
+  },
+  "NC":{
+    "id": 1447,
+    "name": "North Carolina",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "NC",
+    "type": null,
+    "latitude": "35.75957310",
+    "longitude": "-79.01929970"
+  },
+  "ND":{
+    "id": 1418,
+    "name": "North Dakota",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "ND",
+    "type": null,
+    "latitude": "47.55149260",
+    "longitude": "-101.00201190"
+  },
+  "MP":{
+    "id": 1431,
+    "name": "Northern Mariana Islands",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "MP",
+    "type": null,
+    "latitude": "15.09790000",
+    "longitude": "145.67390000"
+  },
+  "OH":{
+    "id": 4851,
+    "name": "Ohio",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "OH",
+    "type": null,
+    "latitude": "40.41728710",
+    "longitude": "-82.90712300"
+  },
+  "OK":{
+    "id": 1421,
+    "name": "Oklahoma",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "OK",
+    "type": null,
+    "latitude": "35.46756020",
+    "longitude": "-97.51642760"
+  },
+  "OR":{
+    "id": 1415,
+    "name": "Oregon",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "OR",
+    "type": null,
+    "latitude": "43.80413340",
+    "longitude": "-120.55420120"
+  },
+  "UM-95":{
+    "id": 1448,
+    "name": "Palmyra Atoll",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "UM-95",
+    "type": null,
+    "latitude": "5.88850260",
+    "longitude": "-162.07866560"
+  },
+  "PA":{
+    "id": 1422,
+    "name": "Pennsylvania",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "PA",
+    "type": null,
+    "latitude": "41.20332160",
+    "longitude": "-77.19452470"
+  },
+  "PR":{
+    "id": 1449,
+    "name": "Puerto Rico",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "PR",
+    "type": null,
+    "latitude": "18.22083300",
+    "longitude": "-66.59014900"
+  },
+  "RI":{
+    "id": 1461,
+    "name": "Rhode Island",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "RI",
+    "type": null,
+    "latitude": "41.58009450",
+    "longitude": "-71.47742910"
+  },
+  "SC":{
+    "id": 1443,
+    "name": "South Carolina",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "SC",
+    "type": null,
+    "latitude": "33.83608100",
+    "longitude": "-81.16372450"
+  },
+  "SD":{
+    "id": 1445,
+    "name": "South Dakota",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "SD",
+    "type": null,
+    "latitude": "43.96951480",
+    "longitude": "-99.90181310"
+  },
+  "TN":{
+    "id": 1454,
+    "name": "Tennessee",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "TN",
+    "type": null,
+    "latitude": "35.51749130",
+    "longitude": "-86.58044730"
+  },
+  "TX":{
+    "id": 1407,
+    "name": "Texas",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "TX",
+    "type": null,
+    "latitude": "31.96859880",
+    "longitude": "-99.90181310"
+  },
+  "UM":{
+    "id": 1432,
+    "name": "United States Minor Outlying Islands",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "UM",
+    "type": null,
+    "latitude": "19.28231920",
+    "longitude": "166.64704700"
+  },
+  "VI":{
+    "id": 1413,
+    "name": "United States Virgin Islands",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "VI",
+    "type": null,
+    "latitude": "18.33576500",
+    "longitude": "-64.89633500"
+  },
+  "UT":{
+    "id": 1414,
+    "name": "Utah",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "UT",
+    "type": null,
+    "latitude": "39.32098010",
+    "longitude": "-111.09373110"
+  },
+  "VT":{
+    "id": 1409,
+    "name": "Vermont",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "VT",
+    "type": null,
+    "latitude": "44.55880280",
+    "longitude": "-72.57784150"
+  },
+  "VA":{
+    "id": 1427,
+    "name": "Virginia",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "VA",
+    "type": null,
+    "latitude": "37.43157340",
+    "longitude": "-78.65689420"
+  },
+  "UM-79":{
+    "id": 1405,
+    "name": "Wake Island",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "UM-79",
+    "type": null,
+    "latitude": "19.27961900",
+    "longitude": "166.64993480"
+  },
+  "WA":{
+    "id": 1462,
+    "name": "Washington",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "WA",
+    "type": null,
+    "latitude": "47.75107410",
+    "longitude": "-120.74013850"
+  },
+  "WV":{
+    "id": 1429,
+    "name": "West Virginia",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "WV",
+    "type": null,
+    "latitude": "38.59762620",
+    "longitude": "-80.45490260"
+  },
+  "WI":{
+    "id": 1441,
+    "name": "Wisconsin",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "WI",
+    "type": null,
+    "latitude": "43.78443970",
+    "longitude": "-88.78786780"
+  },
+  "WY":{
+    "id": 1442,
+    "name": "Wyoming",
+    "country_id": 233,
+    "country_code": "US",
+    "state_code": "WY",
+    "type": null,
+    "latitude": "43.07596780",
+    "longitude": "-107.29028390"
+  }
+}
