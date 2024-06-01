@@ -1,7 +1,2 @@
-# Ecommerce application
-
-
-deployment:
-
-<https://fancy-robot.vercel.app/>
+# Ecommerce application built with Next.js
 
